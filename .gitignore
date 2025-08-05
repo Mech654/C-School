@@ -1,0 +1,62 @@
+# Rider specific
+.idea/
+.idea/*
+
+# Rider caches and local files
+.idea/.idea.*
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries/
+.idea/jsLibraryMappings.xml
+.idea/usage.statistics.xml
+.idea/uiDesigner.xml
+
+# Rider build outputs
+out/
+
+# User-specific files
+*.suo
+*.user
+*.userprefs
+*.sln.docstates
+
+# Build results
+bin/
+obj/
+[Bb]in/
+[Oo]bj/
+
+# VS Code (if used)
+.vscode/
+
+# Rider logs
+.idea/.idea.*
+.idea/.idea.*
+
+# Rider local history
+.idea/.idea.LocalHistory/
+
+# Rider code style settings
+.idea/codeStyles/
+
+# Rider run configurations
+.idea/runConfigurations/
+
+# Resharper files (if you use it)
+_ReSharper*/
+*.DotSettings.user
+
+# NuGet packages
+*.nupkg
+*.snupkg
+packages/
+
+# Backup files
+*.bak
+*.backup
+*.tmp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
