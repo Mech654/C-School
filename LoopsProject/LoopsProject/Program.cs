@@ -1,6 +1,6 @@
-﻿namespace LoopsProject;
+namespace LoopsProject;
 
-class Program
+public class Program
 {
     static void Main(string[] args)
     {
@@ -8,15 +8,16 @@ class Program
         //Console.WriteLine(BiggestNumber([1, 2, 3, 5, 10, 1]));
         //Console.WriteLine(Sevens([3,3,3,7,7,2]));
         //Console.WriteLine(isAdjacent([1,2,1,2,3]));
-        Console.WriteLine(string.Join(", ", PrimeNumbers(100)));
-        Console.WriteLine(ExtractString("##abc##def"));
-        Console.WriteLine(FullSequenceOfLetters("ds"));
-        Console.WriteLine(SumAndAverage(11, 66));
-        DrawTriangle();
-        Console.WriteLine(ToThePowerOf(-2, 3));
+        //Console.WriteLine(string.Join(", ", PrimeNumbers(100)));
+        //Console.WriteLine(ExtractString("##abc##def"));
+        //Console.WriteLine(FullSequenceOfLetters("ds"));
+        //Console.WriteLine(SumAndAverage(11, 66));
+        //DrawTriangle();
+        //Console.WriteLine(ToThePowerOf(-2, 3));
+        Console.WriteLine(string.Join(", ", PrimeNumbersAlt(999)));
     }
 
-    static void PrintTable()
+    public static void PrintTable()
     {
         for (int i = 1; i < 11; i++)
         {
@@ -29,7 +30,7 @@ class Program
         }
     }
 
-    static int BiggestNumber(int[] args)
+    static public int BiggestNumber(int[] args)
     {
         int x = 0;
 
@@ -40,7 +41,7 @@ class Program
         return x;
     }
 
-    static int Sevens(int[] args)
+    public static int Sevens(int[] args)
     {
         int x = 0;
 
@@ -51,7 +52,7 @@ class Program
         return x;
     }
 
-    static bool isAdjacent(int[] args)
+    public static bool isAdjacent(int[] args)
     {
         int x = 0;
         foreach (int i in args)
@@ -70,7 +71,7 @@ class Program
         return false;
     }
 
-    static List<int> PrimeNumbers(int x)
+    public static List<int> PrimeNumbers(int x)
     {
         int[] primes = {
            2, 3, 5, 7, 11, 13, 17, 19, 23, 29,
@@ -100,27 +101,53 @@ class Program
         return selected;
     }
 
-    static string ExtractString(string s)
+
+
+    public static List<int> PrimeNumbersAlt(int x)
+    {
+        List<int> list = new List<int>();
+        for (int i = 2; i <= x; i++) list.Add(i);
+
+        int pIndex = 0;
+
+        while (pIndex < list.Count)
+        {
+            int p = list[pIndex];
+            if (p * p > x) break;
+
+            for (int i = list.Count - 1; i > pIndex; i--)
+            {
+                if (list[i] % p == 0)
+                    list.RemoveAt(i);
+            }
+
+            pIndex++;
+        }
+
+        return list;
+    }
+
+    public static string ExtractString(string s)
     {
         int a = s.IndexOf("##"), b = s.IndexOf("##", a + 2);
         return (a == -1 || b == -1) ? "" : s.Substring(a + 2, b - a - 2);
     }
 
-    static string FullSequenceOfLetters(string s)
+    public static string FullSequenceOfLetters(string s)
     {
         string r = "";
         for (char c = s[0]; c <= s[1]; c++) r += c;
         return r;
     }
 
-    static string SumAndAverage(int n, int m)
+    public static string SumAndAverage(int n, int m)
     {
         int sum = 0, count = m - n + 1;
         for (int i = n; i <= m; i++) sum += i;
         return $"Sum: {sum}, Average: {(double)sum / count}";
     }
 
-    static void DrawTriangle()
+    public static void DrawTriangle()
     {
         int rows = 10;
         for (int i = 1; i <= rows; i++)
@@ -130,7 +157,7 @@ class Program
         }
     }
 
-    static int ToThePowerOf(int b, int p)
+    public static int ToThePowerOf(int b, int p)
     {
         if (p < 0) return 0;
         int r = 1;
