@@ -60,3 +60,5 @@ packages/
 .DS_Store
 Thumbs.db
 
+#Raw data
+Data/
