@@ -105,6 +105,12 @@ class Game
                 return true;
             }
 
+            // Support optional prefixes: keep/hold/k/h
+            if (lower.StartsWith("keep ")) userInput = userInput.Substring(5).Trim();
+            else if (lower.StartsWith("hold ")) userInput = userInput.Substring(5).Trim();
+            else if (lower.StartsWith("k ")) userInput = userInput.Substring(2).Trim();
+            else if (lower.StartsWith("h ")) userInput = userInput.Substring(2).Trim();
+
             // Validate only allowed characters: digits 1-5, commas, and whitespace
             bool hasOnlyAllowedChars = true;
             bool hasAtLeastOneDigit = false;
