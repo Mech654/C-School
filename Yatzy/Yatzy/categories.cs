@@ -1,5 +1,3 @@
-using System;
-
 namespace Yatzy
 {
     public enum Categories

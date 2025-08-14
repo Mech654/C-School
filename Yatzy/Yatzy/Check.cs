@@ -1,5 +1,3 @@
-using System;
-
 namespace Yatzy;
 
 class Check

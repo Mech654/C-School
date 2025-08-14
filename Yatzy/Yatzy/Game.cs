@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-
 namespace Yatzy;
 
 class Game
 {
     private readonly string[] categories = Enum.GetNames(typeof(Categories));
     private readonly Player[] players;
-    private readonly Random randomNumberGenerator = new Random();
-
     // Minimal color helpers to keep output readable but a bit nicer
     private static void WriteLineColored(string text, ConsoleColor color)
     {
@@ -63,7 +58,7 @@ class Game
     {
         for (int rollNumber = 1; rollNumber <= 3; rollNumber++)
         {
-            diceHand.Roll(randomNumberGenerator);
+            diceHand.Roll();
             WriteColored("Roll " + rollNumber + ": ", ConsoleColor.DarkGray);
             ConsoleColor prev = Console.ForegroundColor;
             try { Console.ForegroundColor = ConsoleColor.White; diceHand.PrintDice(); }
@@ -98,23 +93,17 @@ class Game
             string lower = userInput.ToLowerInvariant();
 
             // Stop early
-            if (lower == "s" || lower == "stop" || lower == "q" || lower == "quit" || lower == "done")
+            if (lower == "s")
             {
                 return false;
             }
 
             // Reroll all
-            if (userInput.Length == 0 || lower == "r" || lower == "reroll" || lower == "a" || lower == "all")
+            if (userInput.Length == 0)
             {
                 diceHand.ApplyKeepInput(string.Empty); // clears keep flags
                 return true;
             }
-
-            // Support optional prefixes: keep/hold/k/h
-            if (lower.StartsWith("keep ")) userInput = userInput.Substring(5).Trim();
-            else if (lower.StartsWith("hold ")) userInput = userInput.Substring(5).Trim();
-            else if (lower.StartsWith("k ")) userInput = userInput.Substring(2).Trim();
-            else if (lower.StartsWith("h ")) userInput = userInput.Substring(2).Trim();
 
             // Validate only allowed characters: digits 1-5, commas, and whitespace
             bool hasOnlyAllowedChars = true;
